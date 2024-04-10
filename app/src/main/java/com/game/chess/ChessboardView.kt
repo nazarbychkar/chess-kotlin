@@ -24,18 +24,16 @@ class ChessboardView(context: Context, attrs: AttributeSet?) : View(context, att
         val paint = Paint()
         paint.color = whiteColor
 
-        for (row in 0..7) {
-            for (column in 0..7) {
+        for (row in 0 until 8) {
+            for (column in 0 until 8) {
+                paint.color = if ((row + column) % 2 == 1) blackColor else whiteColor
                 canvas.drawRect(
-                    initialX + (column * sizeRect),
-                    initialY + (row * sizeRect),
-                    (initialX + sizeRect) + (column * sizeRect),
-                    (initialY + sizeRect) + (column * sizeRect),
-                    paint
+                    initialX + column * sizeRect,
+                    initialY + row * sizeRect,
+                    initialX + (column + 1)* sizeRect,
+                    initialY + (row + 1) * sizeRect, paint
                 )
-                paint.color = if (paint.color == whiteColor) blackColor else whiteColor
             }
-            paint.color = if (paint.color == whiteColor) blackColor else whiteColor
         }
     }
 }
